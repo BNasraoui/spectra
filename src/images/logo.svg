@@ -1,0 +1,161 @@
+<svg width="1000" height="150" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define dot parameters -->
+  <defs>
+    <circle id="dot" r="5" fill="#FFF" />
+  </defs>
+
+  <!-- Function to create letters using dots -->
+  <!-- Positioning variables -->
+  <!-- Adjust 'dx' to change horizontal spacing between letters -->
+  <!-- Adjust 'dy' to change vertical positioning -->
+  <!-- Starting x position -->
+  <g transform="translate(50,50)">
+    <!-- Letter 'S' -->
+    <g id="S">
+      <!-- Row 1 -->
+      <use x="0" y="0" href="#dot" />
+      <use x="15" y="0" href="#dot" />
+      <use x="30" y="0" href="#dot" />
+      <use x="45" y="0" href="#dot" />
+      <use x="60" y="0" href="#dot" />
+      <!-- Row 2 -->
+      <use x="0" y="15" href="#dot" />
+      <!-- Row 3 -->
+      <use x="0" y="30" href="#dot" />
+      <use x="15" y="30" href="#dot" />
+      <use x="30" y="30" href="#dot" />
+      <use x="45" y="30" href="#dot" />
+      <use x="60" y="30" href="#dot" />
+      <!-- Row 4 -->
+      <use x="60" y="45" href="#dot" />
+      <!-- Row 5 -->
+      <use x="0" y="60" href="#dot" />
+      <use x="15" y="60" href="#dot" />
+      <use x="30" y="60" href="#dot" />
+      <use x="45" y="60" href="#dot" />
+      <use x="60" y="60" href="#dot" />
+    </g>
+
+    <!-- Letter 'P' -->
+    <g id="P" transform="translate(90,0)">
+      <!-- Row 1 -->
+      <use x="0" y="0" href="#dot" />
+      <use x="15" y="0" href="#dot" />
+      <use x="30" y="0" href="#dot" />
+      <use x="45" y="0" href="#dot" />
+      <!-- Row 2 -->
+      <use x="0" y="15" href="#dot" />
+      <use x="60" y="15" href="#dot" />
+      <!-- Row 3 -->
+      <use x="0" y="30" href="#dot" />
+      <use x="15" y="30" href="#dot" />
+      <use x="30" y="30" href="#dot" />
+      <use x="45" y="30" href="#dot" />
+      <!-- Row 4 -->
+      <use x="0" y="45" href="#dot" />
+      <!-- Row 5 -->
+      <use x="0" y="60" href="#dot" />
+    </g>
+
+    <!-- Letter 'E' -->
+    <g id="E" transform="translate(180,0)">
+      <!-- Row 1 -->
+      <use x="0" y="0" href="#dot" />
+      <use x="15" y="0" href="#dot" />
+      <use x="30" y="0" href="#dot" />
+      <use x="45" y="0" href="#dot" />
+      <!-- Row 2 -->
+      <use x="0" y="15" href="#dot" />
+      <!-- Row 3 -->
+      <use x="0" y="30" href="#dot" />
+      <use x="15" y="30" href="#dot" />
+      <use x="30" y="30" href="#dot" />
+      <!-- Row 4 -->
+      <use x="0" y="45" href="#dot" />
+      <!-- Row 5 -->
+      <use x="0" y="60" href="#dot" />
+      <use x="15" y="60" href="#dot" />
+      <use x="30" y="60" href="#dot" />
+      <use x="45" y="60" href="#dot" />
+    </g>
+
+    <!-- Letter 'C' -->
+    <g id="C" transform="translate(270,0)">
+      <!-- Row 1 -->
+      <use x="15" y="0" href="#dot" />
+      <use x="30" y="0" href="#dot" />
+      <use x="45" y="0" href="#dot" />
+      <!-- Row 2 -->
+      <use x="0" y="15" href="#dot" />
+      <!-- Row 3 -->
+      <use x="0" y="30" href="#dot" />
+      <!-- Row 4 -->
+      <use x="0" y="45" href="#dot" />
+      <!-- Row 5 -->
+      <use x="15" y="60" href="#dot" />
+      <use x="30" y="60" href="#dot" />
+      <use x="45" y="60" href="#dot" />
+    </g>
+
+    <!-- Letter 'T' -->
+    <g id="T" transform="translate(360,0)">
+      <!-- Row 1 -->
+      <use x="0" y="0" href="#dot" />
+      <use x="15" y="0" href="#dot" />
+      <use x="30" y="0" href="#dot" />
+      <use x="45" y="0" href="#dot" />
+      <use x="60" y="0" href="#dot" />
+      <!-- Rows 2 to 5 -->
+      <use x="30" y="15" href="#dot" />
+      <use x="30" y="30" href="#dot" />
+      <use x="30" y="45" href="#dot" />
+      <use x="30" y="60" href="#dot" />
+    </g>
+
+    <!-- Letter 'R' -->
+    <g id="R" transform="translate(450,0)">
+      <!-- Row 1 -->
+      <use x="0" y="0" href="#dot" />
+      <use x="15" y="0" href="#dot" />
+      <use x="30" y="0" href="#dot" />
+      <use x="45" y="0" href="#dot" />
+      <!-- Row 2 -->
+      <use x="0" y="15" href="#dot" />
+      <use x="60" y="15" href="#dot" />
+      <!-- Row 3 -->
+      <use x="0" y="30" href="#dot" />
+      <use x="15" y="30" href="#dot" />
+      <use x="30" y="30" href="#dot" />
+      <use x="45" y="30" href="#dot" />
+      <!-- Row 4 -->
+      <use x="0" y="45" href="#dot" />
+      <use x="60" y="45" href="#dot" />
+      <!-- Row 5 -->
+      <use x="0" y="60" href="#dot" />
+      <use x="60" y="60" href="#dot" />
+    </g>
+
+    <!-- Letter 'A' -->
+    <g id="A" transform="translate(540,0)">
+      <!-- Row 1 -->
+      <use x="15" y="0" href="#dot" />
+      <use x="30" y="0" href="#dot" />
+      <use x="45" y="0" href="#dot" />
+      <!-- Row 2 -->
+      <use x="0" y="15" href="#dot" />
+      <use x="60" y="15" href="#dot" />
+      <!-- Row 3 -->
+      <use x="0" y="30" href="#dot" />
+      <use x="15" y="30" href="#dot" />
+      <use x="30" y="30" href="#dot" />
+      <use x="45" y="30" href="#dot" />
+      <use x="60" y="30" href="#dot" />
+      <!-- Row 4 -->
+      <use x="0" y="45" href="#dot" />
+      <use x="60" y="45" href="#dot" />
+      <!-- Row 5 -->
+      <use x="0" y="60" href="#dot" />
+      <use x="60" y="60" href="#dot" />
+    </g>
+  </g>
+</svg>
