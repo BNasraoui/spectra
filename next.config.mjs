@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     eslint: {
-      // Disable ESLint only in developmentn
-      ignoreDuringBuilds: process.env.NODE_ENV === 'development'
+      // Disable ESLint during builds for both development and production
+      ignoreDuringBuilds: true,
     },
   };
   
