@@ -1,17 +1,15 @@
 'use client'
 
-import React, { useState, Suspense } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import dynamic from 'next/dynamic'
 import { useAuth } from '../app/context/AuthContext'
-
-const Navbar = dynamic(() => import('@/components/Navbar'), { ssr: false })
-const Vehicles = dynamic(() => import('@/components/Vehicles'), { ssr: false })
-const Incidents = dynamic(() => import('@/components/Incidents'), { ssr: false })
-const MapComponent = dynamic(() => import('@/components/MapComponent'), { ssr: false })
-const LayerConfig = dynamic(() => import('@/components/LayerConfig'), { ssr: false })
-const TerminalPopup = dynamic(() => import('@/components/TerminalPopup'), { ssr: false })
-const EmergencyCallForm = dynamic(() => import('@/components/EmergencyCallForm'), { ssr: false })
+import Navbar from '@/components/Navbar'
+import Vehicles from '@/components/Vehicles'
+import Incidents from '@/components/Incidents'
+import MapComponent from '@/components/MapComponent'
+import LayerConfig from '@/components/LayerConfig'
+import TerminalPopup from '@/components/TerminalPopup'
+import EmergencyCallForm from '@/components/EmergencyCallForm'
 
 interface Incident {
   id: string
@@ -25,7 +23,7 @@ interface Incident {
   dispatchTime: string
 }
 
-const HomePage: React.FC = () => {
+const Home: React.FC = () => {
   const router = useRouter()
   const { isAuthenticated } = useAuth()
   const [isEmergencyFormOpen, setIsEmergencyFormOpen] = useState(false)
@@ -54,55 +52,41 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gray-900">
-      <Suspense fallback={<div>Loading Navbar...</div>}>
-        <Navbar
-          onEmergencyClick={handleEmergencyClick}
-          onScheduledClick={() => console.log('Scheduled clicked')}
-          onGeoClick={() => console.log('Geo clicked')}
-          onConfigClick={() => console.log('Config clicked')}
-        />
-      </Suspense>
+    <div className="flex flex-col min-h-screen bg-gray-900">
+      <Navbar
+        onEmergencyClick={handleEmergencyClick}
+        onScheduledClick={() => console.log('Scheduled clicked')}
+        onGeoClick={() => console.log('Geo clicked')}
+        onConfigClick={() => console.log('Config clicked')}
+      />
       <main className="flex-grow container mx-auto p-4 flex flex-col">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
-          <div className="flex flex-col gap-4 h-full">
-            <div className="bg-gray-800 shadow-lg rounded-lg overflow-hidden flex-1 min-h-0">
-              <Suspense fallback={<div>Loading Incidents...</div>}>
-                <Incidents incidents={incidents} />
-              </Suspense>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-grow">
+          <div className="flex flex-col gap-4">
+            <div className="bg-gray-800 shadow-lg overflow-hidden flex-1 max-h-[calc(50vh-2.5rem)]">
+              <Incidents incidents={incidents} />
             </div>
-            <div className="bg-gray-800 shadow-lg rounded-lg overflow-hidden flex-1 min-h-0">
-              <Suspense fallback={<div>Loading Vehicles...</div>}>
-                <Vehicles />
-              </Suspense>
+            <div className="bg-gray-800 shadow-lg overflow-hidden flex-1 max-h-[calc(50vh-2.5rem)]">
+              <Vehicles />
             </div>
           </div>
-          <div className="flex flex-col gap-4 h-full">
-            <div className="bg-gray-800 shadow-lg rounded-lg overflow-hidden flex-grow min-h-0">
-              <Suspense fallback={<div>Loading Map...</div>}>
-                <MapComponent mapId="main-map" />
-              </Suspense>
+          <div className="flex flex-col gap-4">
+            <div className="bg-gray-800 shadow-lg overflow-hidden flex-grow max-h-[calc(75vh-2.5rem)]">
+              <MapComponent mapId="main-map" />
             </div>
-            <div className="bg-gray-800 shadow-lg rounded-lg overflow-hidden h-1/4 min-h-0">
-              <Suspense fallback={<div>Loading Layer Config...</div>}>
-                <LayerConfig />
-              </Suspense>
+            <div className="bg-gray-800 shadow-lg overflow-hidden h-1/4 max-h-[calc(25vh-2.5rem)]">
+              <LayerConfig />
             </div>
           </div>
         </div>
       </main>
-      <Suspense fallback={<div>Loading Terminal Popup...</div>}>
-        <TerminalPopup />
-      </Suspense>
-      <Suspense fallback={<div>Loading Emergency Call Form...</div>}>
-        <EmergencyCallForm
-          isOpen={isEmergencyFormOpen}
-          onClose={handleCloseEmergencyForm}
-          onSubmit={handleAddIncident}
-        />
-      </Suspense>
+      <TerminalPopup />
+      <EmergencyCallForm
+        isOpen={isEmergencyFormOpen}
+        onClose={handleCloseEmergencyForm}
+        onSubmit={handleAddIncident}
+      />
     </div>
   )
 }
 
-export default HomePage
+export default Home

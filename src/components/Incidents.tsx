@@ -1,5 +1,4 @@
 'use client'
-
 import React from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import PopOutButton from './PopOutButton'
@@ -56,7 +55,7 @@ export default function Incidents() {
               >
                 <TableCell className="w-[100px] font-medium">{incident.id}</TableCell>
                 <TableCell className="w-[150px]">{incident.determinant}</TableCell>
-                <TableCell className="w-[100px]">{incident.priority}</TableCell>
+                <TableCell className="w-[100px]">{incident.priority}`</TableCell>
                 <TableCell className="w-[150px]">{incident.assignedVehicles}</TableCell>
                 <TableCell className="w-[100px]">{incident.status}</TableCell>
                 <TableCell className="w-[200px]">{incident.city}</TableCell>

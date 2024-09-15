@@ -93,29 +93,6 @@ const LayerConfig: React.FC = () => {
             </div>
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="points-of-interest" className="border-b border-gray-700">
-          <AccordionTrigger className="text-gray-100 hover:text-gray-300">Points of Interest</AccordionTrigger>
-          <AccordionContent className="text-gray-300">
-            <div className="space-y-2">
-              {Object.entries(layers.pointsOfInterest).map(([key, value]) => (
-                <div key={key} className="flex items-center space-x-2">
-                  <Checkbox 
-                    id={`poi-${key}`} 
-                    checked={value}
-                    onCheckedChange={() => handleLayerToggle('pointsOfInterest', key)}
-                    className="border-gray-600 text-blue-500"
-                  />
-                  <label 
-                    htmlFor={`poi-${key}`}
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    {key.charAt(0).toUpperCase() + key.slice(1)}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
       </Accordion>
     </div>
   )
