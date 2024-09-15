@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 interface AuthContextType {
   isAuthenticated: boolean;
   username: string | null;
-  login: (username: string, password: string) => Promise<void>;
+  login: (username: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -27,7 +27,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     checkAuth();
   }, []);
 
-  const login = async (username: string, password: string) => {
+  const login = async (username: string) => {
     // Implement your login logic here
     // For this example, we'll just set isAuthenticated to true
     setIsAuthenticated(true);
