@@ -1,15 +1,16 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '../app/context/AuthContext';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Vehicles from '@/components/Vehicles';
 import Incidents from '@/components/Incidents';
-import MapComponent from '@/components/MapComponent';
 import LayerConfig from '@/components/LayerConfig';
 import TerminalPopup from '@/components/TerminalPopup';
 import EmergencyCallForm from '@/components/EmergencyCallForm';
+import dynamic from 'next/dynamic';
+
+// Lazy load the MapComponent
+const LazyMapComponent = dynamic(() => import('@/components/MapComponent'), { ssr: false });
 
 interface Incident {
   id: string;
@@ -24,16 +25,8 @@ interface Incident {
 }
 
 const Home: React.FC = () => {
-  const router = useRouter();
-  const { isAuthenticated } = useAuth();
   const [isEmergencyFormOpen, setIsEmergencyFormOpen] = useState(false);
   const [incidents, setIncidents] = useState<Incident[]>([]);
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login');
-    }
-  }, [isAuthenticated, router]);
 
   const handleEmergencyClick = () => {
     setIsEmergencyFormOpen(true);
@@ -46,10 +39,6 @@ const Home: React.FC = () => {
   const handleAddIncident = (newIncident: Incident) => {
     setIncidents((prevIncidents) => [...prevIncidents, newIncident]);
   };
-
-  if (!isAuthenticated) {
-    return null;
-  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900">
@@ -71,7 +60,7 @@ const Home: React.FC = () => {
           </div>
           <div className="flex flex-col gap-4">
             <div className="bg-gray-800 shadow-lg overflow-hidden flex-grow max-h-[calc(75vh-2.5rem)]">
-              <MapComponent mapId="main-map" />
+              <LazyMapComponent mapId="main-map" />
             </div>
             <div className="bg-gray-800 shadow-lg overflow-hidden h-1/4 max-h-[calc(25vh-2.5rem)]">
               <LayerConfig />

@@ -1,46 +1,53 @@
-'use client'
+'use client';
 
-import React, { useEffect, useRef } from 'react'
-import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
+import React, { useEffect, useRef, useState } from 'react';
+import 'leaflet/dist/leaflet.css';
 
 interface MapComponentProps {
-  mapId: string
+  mapId: string;
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({ mapId }) => {
-  const mapRef = useRef<L.Map | null>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const mapRef = useRef<L.Map | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  // Only run this effect if we are on the client (browser-side)
+  useEffect(() => {
+    setIsClient(typeof window !== 'undefined');
+  }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !mapRef.current && containerRef.current) {
-      mapRef.current = L.map(containerRef.current, {
-        center: [-27.4698, 153.0251],
-        zoom: 13,
-        scrollWheelZoom: false
-      })
+    const initializeMap = async () => {
+      // Dynamically import Leaflet only on the client side
+      const L = await import('leaflet');
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(mapRef.current)
+      if (containerRef.current && !mapRef.current) {
+        mapRef.current = L.map(containerRef.current, {
+          center: [-27.4698, 153.0251], // Default map center (example: Brisbane)
+          zoom: 13,
+          scrollWheelZoom: false,
+        });
 
-      const resizeObserver = new ResizeObserver(() => {
-        mapRef.current?.invalidateSize()
-      })
-
-      resizeObserver.observe(containerRef.current)
-
-      return () => {
-        if (mapRef.current) {
-          mapRef.current.remove()
-          mapRef.current = null
-        }
-        resizeObserver.disconnect()
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(mapRef.current);
       }
+    };
+
+    if (isClient) {
+      initializeMap();
     }
-  }, [mapId])
 
-  return <div id={mapId} ref={containerRef} className="w-full h-full" />
-}
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
+    };
+  }, [isClient]);
 
-export default MapComponent
+  return <div id={mapId} ref={containerRef} className="w-full h-full" />;
+};
+
+export default MapComponent;

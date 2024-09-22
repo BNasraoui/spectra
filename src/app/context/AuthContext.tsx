@@ -28,13 +28,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (username: string) => {
-    // Implement your login logic here
-    // For this example, we'll just set isAuthenticated to true
     setIsAuthenticated(true);
     setUsername(username);
     localStorage.setItem('username', username);
   };
-
+  
   const logout = () => {
     setIsAuthenticated(false);
     setUsername(null);
